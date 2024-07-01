@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { useState } from 'react';
+import {useDispatch} from 'react-redux';
+import { addProduct } from './store/ProductSlice';
+import InputField from './components/InputField'
+import ProductList from './components/ProductList';
 function App() {
+  const dispatch = useDispatch();
+  const addProductHandler = (product) => {
+    dispatch(addProduct(product))
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <InputField handleSubmit={addProductHandler}/> 
+     <ProductList/>
     </div>
   );
 }
